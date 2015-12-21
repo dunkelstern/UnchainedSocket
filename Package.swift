@@ -9,5 +9,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "UnchainedSocket"
+    name: "UnchainedSocket",
+    dependencies: [
+        .Package(url:"https://github.com/dunkelstern/Adler32.git", majorVersion: 0),
+	.Package(url:"https://github.com/dunkelstern/UnchainedIPAddress.git", majorVersion: 0)
+    ]
 )

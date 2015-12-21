@@ -15,6 +15,8 @@
     import Darwin.C
 #endif
 
+import UnchainedIPAddress
+
 public typealias ReceiveCallback = ((socket: Socket, char: UInt8, connectionID: UUID4, remote: IPAddress?) -> Bool)
 public typealias SendCallback = ((data: SocketData, connectionID: UUID4) -> Void)
 
