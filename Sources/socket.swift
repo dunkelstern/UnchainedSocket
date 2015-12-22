@@ -10,12 +10,14 @@
 // TODO: Clean up idle sockets after timeout
 
 #if os(Linux)
-    import Glibc
+    import UnchainedGlibc
 #else
     import Darwin.C
 #endif
 
 import UnchainedIPAddress
+import UnchainedUUID
+import UnchainedLogger
 
 public typealias ReceiveCallback = ((socket: Socket, char: UInt8, connectionID: UUID4, remote: IPAddress?) -> Bool)
 public typealias SendCallback = ((data: SocketData, connectionID: UUID4) -> Void)
@@ -47,7 +49,7 @@ public class Socket {
             hints.ai_family = AF_UNSPEC
             hints.ai_flags = AI_PASSIVE
         }
-        hints.ai_socktype = SOCK_STREAM
+        hints.ai_socktype = Int32(SOCK_STREAM)
         
         // execute query
         var addrInfo = UnsafeMutablePointer<addrinfo>()
